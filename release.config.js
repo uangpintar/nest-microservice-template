@@ -1,6 +1,6 @@
 module.exports = {
   branches: 'master',
-  repositoryUrl: 'https://github.com/michaelanggriawan/nestjs-microservices',
+  repositoryUrl: 'https://github.com/uangpintar/nestjs-microservices',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
