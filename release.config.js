@@ -1,5 +1,5 @@
 module.exports = {
-  branches: 'master',
+  branches: 'main',
   repositoryUrl: 'https://github.com/uangpintar/nestjs-microservices',
   plugins: [
     '@semantic-release/commit-analyzer',
