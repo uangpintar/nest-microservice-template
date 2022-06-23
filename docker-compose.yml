@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+  orders:
+    build:
+      context: .
+      dockerfile: ./apps/orders/Dockerfile
+      target: production
+    command: npm run start:orders:prod
+    env_file:
+      - ./apps/orders/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
+    depends_on:
+      - auth
+      - billing
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+
+  billing:
+    build:
+      context: .
+      dockerfile: ./apps/billing/Dockerfile
+      target: production
+    command: npm run start:billing:prod
+    env_file:
+      - ./apps/billing/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
+    depends_on:
+      - auth
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3002:3002'
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: production
+    command: npm run start:auth:prod
+    ports:
+      - '3001:3001'
+    env_file:
+      - ./apps/auth/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+networks:
+  default:
+    name: datadog
+    external: true
+      
+

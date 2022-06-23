@@ -1,0 +1,15 @@
+name: pull_request validation
+
+on:
+  pull_request:
+    branches: [develop, master]
+
+jobs:
+  validation:
+    name: validate pr description
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce Pull Request Description Length
+        uses: ryanvade/enforce-pr-description-length-action@v1
+        with:
+          minLength: 5

@@ -1,0 +1,20 @@
+{
+  "name": "@apps/libs",
+  "version": "0.0.1",
+  "description": "monorepo libs",
+  "scripts": {
+    "test": "../../node_modules/jest/bin/jest.js --maxWorkers=50%",
+    "test:cov": "../../node_modules/jest/bin/jest.js --maxWorkers=50% --coverage"
+  },
+  "author": {
+    "name": "Michael Anggriawan",
+    "email": "michaelanggriawan941@gmail.com"
+  },
+  "engines": {
+    "node": ">=14 <=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@nestjs/config": "^2.0.1"
+  }
+}

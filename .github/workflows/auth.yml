@@ -1,0 +1,67 @@
+name: CI-auth
+
+on:
+  push:
+    branches: [develop, master]
+    paths:
+      - 'apps/auth/**'
+
+  pull_request:
+    branches: [develop, master]
+    paths:
+      - 'apps/auth/**'
+
+jobs:
+  test:
+    name: Run lint and unit test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-key: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: run lint
+        run: npm run lint --prefix apps/auth
+
+      - name: run unit test
+        run: npm run test:cov --prefix apps/auth
+
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: apps/auth/coverage
+
+      - uses: actions/download-artifact@v2
+
+      - name: Create a release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sonar cloud scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: apps/auth
+        env:
+          SONAR_TOKEN: '165f5e39fa0b5795325087273172e1858d3a1544'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+

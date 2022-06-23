@@ -1,0 +1,33 @@
+### Create order transaction
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "name": "t-shirt",
+  "price": 1000,
+  "phoneNumber": "+628129876543"
+}
+
+
+### Get orders transaction
+GET http://localhost:3000/orders
+Content-Type: application/json
+
+
+### POST user login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123123"
+}
+
+### Create a user
+POST http://localhost:3001/auth/users
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123123"
+}
