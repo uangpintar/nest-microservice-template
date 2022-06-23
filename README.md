@@ -129,141 +129,141 @@ You can run spesific service by running the dockerfile on the project folder
 
 ```
 .
-.dockerignore
-.eslintrc.js
-.github
-   |-- CODEOWNERS
-   |-- workflows
-   |   |-- auth.yml
-   |   |-- billing.yml
-   |   |-- orders.yml
-.gitignore
-.husky
-   |-- commit-msg
-.prettierrc
-README.md
-apps
-   |-- auth
-   |   |-- .env
-   |   |-- Dockerfile
-   |   |-- jest.config.js
-   |   |-- package.json
-   |   |-- sonar-project.properties
-   |   |-- src
-   |   |   |-- __mocks__
-   |   |   |   |-- auth.service.ts
-   |   |   |-- auth.controller.ts
-   |   |   |-- auth.module.ts
-   |   |   |-- auth.service.ts
-   |   |   |-- constant
-   |   |   |   |-- document.ts
-   |   |   |-- current-user.decorator.ts
-   |   |   |-- guards
-   |   |   |   |-- jwt-auth.guard.ts
-   |   |   |   |-- local-auth.guard.ts
-   |   |   |-- main.ts
-   |   |   |-- strategies
-   |   |   |   |-- jwt.strategy.ts
-   |   |   |   |-- local.strategy.ts
-   |   |   |-- test
-   |   |   |   |-- auth.controller.spec.ts
-   |   |   |-- tracing.ts
-   |   |   |-- users
-   |   |   |   |-- __mocks__
-   |   |   |   |   |-- users.service.ts
-   |   |   |   |-- dto
-   |   |   |   |   |-- create-user.request.ts
-   |   |   |   |-- schemas
-   |   |   |   |   |-- user.schema.ts
-   |   |   |   |-- test
-   |   |   |   |   |-- stubs
-   |   |   |   |   |   |-- users.stub.ts
-   |   |   |   |   |-- users.controller.spec.ts
-   |   |   |   |-- users.controller.ts
-   |   |   |   |-- users.module.ts
-   |   |   |   |-- users.repository.ts
-   |   |   |   |-- users.service.ts
-   |   |-- tests
-   |   |   |-- initialization.js
-   |   |-- tsconfig.app.json
-   |-- billing
-   |   |-- .env
-   |   |-- Dockerfile
-   |   |-- jest.config.js
-   |   |-- package-lock.json
-   |   |-- package.json
-   |   |-- sonar-project.properties
-   |   |-- src
-   |   |   |-- billing.controller.ts
-   |   |   |-- billing.module.ts
-   |   |   |-- billing.service.ts
-   |   |   |-- main.ts
-   |   |   |-- test
-   |   |   |   |-- billing.controller.spec.ts
-   |   |   |-- tracing.ts
-   |   |-- tests
-   |   |   |-- initialization.js
-   |   |-- tsconfig.app.json
-   |-- orders
-   |   |-- .env
-   |   |-- Dockerfile
-   |   |-- jest.config.js
-   |   |-- package-lock.json
-   |   |-- package.json
-   |   |-- sonar-project.properties
-   |   |-- src
-   |   |   |-- __mocks__
-   |   |   |   |-- orders.repository.ts
-   |   |   |   |-- orders.service.ts
-   |   |   |-- constant
-   |   |   |   |-- document.ts
-   |   |   |   |-- services.ts
-   |   |   |-- dto
-   |   |   |   |-- create-order.request.ts
-   |   |   |-- main.ts
-   |   |   |-- orders.controller.ts
-   |   |   |-- orders.module.ts
-   |   |   |-- orders.repository.ts
-   |   |   |-- orders.service.ts
-   |   |   |-- schemas
-   |   |   |   |-- order.schema.ts
-   |   |   |-- test
-   |   |   |   |-- orders.controller.spec.ts
-   |   |   |   |-- orders.repository.spec.ts
-   |   |   |   |-- stubs
-   |   |   |   |   |-- orders.stub.ts
-   |   |   |-- tracing.ts
-   |   |-- tests
-   |   |   |-- initialization.js
-   |   |-- tsconfig.app.json
-commitlint.config.js
-docker-compose.yml
-jest.config.ts
-libs
-   |-- common
-   |   |-- package-lock.json
-   |   |-- package.json
-   |   |-- src
-   |   |   |-- auth
-   |   |   |   |-- auth.module.ts
-   |   |   |   |-- jwt-auth.guard.ts
-   |   |   |   |-- services.ts
-   |   |   |-- database
-   |   |   |   |-- abstract.repository.ts
-   |   |   |   |-- abstract.schema.ts
-   |   |   |   |-- database.module.ts
-   |   |   |-- index.ts
-   |   |   |-- rmq
-   |   |   |   |-- rmq.module.ts
-   |   |   |   |-- rmq.service.ts
-   |   |-- tsconfig.lib.json
-nest-cli.json
-package-lock.json
-package.json
-release.config.js
-request.http
-tsconfig.build.json
-tsconfig.json
+|-- apps
+|   |-- auth
+|   |   |-- src
+|   |   |   |-- config
+|   |   |   |   `-- configuration.ts
+|   |   |   |-- constant
+|   |   |   |   `-- document.ts
+|   |   |   |-- guards
+|   |   |   |   |-- jwt-auth.guard.ts
+|   |   |   |   `-- local-auth.guard.ts
+|   |   |   |-- __mocks__
+|   |   |   |   `-- auth.service.ts
+|   |   |   |-- strategies
+|   |   |   |   |-- jwt.strategy.ts
+|   |   |   |   `-- local.strategy.ts
+|   |   |   |-- test
+|   |   |   |   `-- auth.controller.spec.ts
+|   |   |   |-- users
+|   |   |   |   |-- dto
+|   |   |   |   |   `-- create-user.request.ts
+|   |   |   |   |-- __mocks__
+|   |   |   |   |   `-- users.service.ts
+|   |   |   |   |-- schemas
+|   |   |   |   |   `-- user.schema.ts
+|   |   |   |   |-- test
+|   |   |   |   |   |-- stubs
+|   |   |   |   |   |   `-- users.stub.ts
+|   |   |   |   |   `-- users.controller.spec.ts
+|   |   |   |   |-- users.controller.ts
+|   |   |   |   |-- users.module.ts
+|   |   |   |   |-- users.repository.ts
+|   |   |   |   `-- users.service.ts
+|   |   |   |-- auth.controller.ts
+|   |   |   |-- auth.module.ts
+|   |   |   |-- auth.service.ts
+|   |   |   |-- current-user.decorator.ts
+|   |   |   |-- main.ts
+|   |   |   `-- tracing.ts
+|   |   |-- tests
+|   |   |   `-- initialization.js
+|   |   |-- Dockerfile
+|   |   |-- jest.config.js
+|   |   |-- package.json
+|   |   |-- sonar-project.properties
+|   |   `-- tsconfig.app.json
+|   |-- billing
+|   |   |-- src
+|   |   |   |-- config
+|   |   |   |   `-- configuration.ts
+|   |   |   |-- constant
+|   |   |   |   `-- document.ts
+|   |   |   |-- test
+|   |   |   |   `-- billing.controller.spec.ts
+|   |   |   |-- billing.controller.ts
+|   |   |   |-- billing.module.ts
+|   |   |   |-- billing.service.ts
+|   |   |   |-- main.ts
+|   |   |   `-- tracing.ts
+|   |   |-- tests
+|   |   |   `-- initialization.js
+|   |   |-- Dockerfile
+|   |   |-- jest.config.js
+|   |   |-- package.json
+|   |   |-- package-lock.json
+|   |   |-- sonar-project.properties
+|   |   `-- tsconfig.app.json
+|   `-- orders
+|       |-- src
+|       |   |-- config
+|       |   |   `-- configuration.ts
+|       |   |-- constant
+|       |   |   |-- document.ts
+|       |   |   `-- services.ts
+|       |   |-- dto
+|       |   |   `-- create-order.request.ts
+|       |   |-- __mocks__
+|       |   |   |-- orders.repository.ts
+|       |   |   `-- orders.service.ts
+|       |   |-- schemas
+|       |   |   `-- order.schema.ts
+|       |   |-- test
+|       |   |   |-- stubs
+|       |   |   |   `-- orders.stub.ts
+|       |   |   |-- orders.controller.spec.ts
+|       |   |   `-- orders.repository.spec.ts
+|       |   |-- main.ts
+|       |   |-- orders.controller.ts
+|       |   |-- orders.module.ts
+|       |   |-- orders.repository.ts
+|       |   |-- orders.service.ts
+|       |   `-- tracing.ts
+|       |-- tests
+|       |   `-- initialization.js
+|       |-- Dockerfile
+|       |-- jest.config.js
+|       |-- package.json
+|       |-- package-lock.json
+|       |-- sonar-project.properties
+|       `-- tsconfig.app.json
+|-- libs
+|   `-- common
+|       |-- src
+|       |   |-- auth
+|       |   |   |-- auth.module.ts
+|       |   |   |-- jwt-auth.guard.ts
+|       |   |   `-- services.ts
+|       |   |-- database
+|       |   |   |-- abstract.repository.ts
+|       |   |   |-- abstract.schema.ts
+|       |   |   `-- database.module.ts
+|       |   |-- kafka
+|       |   |   |-- kafka.module.ts
+|       |   |   `-- kafka.service.ts
+|       |   |-- pubSubClient
+|       |   |   `-- pubSubClient.ts
+|       |   |-- rmq
+|       |   |   |-- rmq.module.ts
+|       |   |   `-- rmq.service.ts
+|       |   `-- index.ts
+|       |-- package.json
+|       |-- package-lock.json
+|       `-- tsconfig.lib.json
+|-- commitlint.config.js
+|-- docker-compose-deployment.yml
+|-- docker-compose-dev.yml
+|-- docker-compose.yml
+|-- jest.config.ts
+|-- nest-cli.json
+|-- package.json
+|-- package-lock.json
+|-- README.md
+|-- release.config.js
+|-- request.http
+|-- tsconfig.build.json
+`-- tsconfig.json
 ```
 
 ---
