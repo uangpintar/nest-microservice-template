@@ -60,7 +60,7 @@ jobs:
         with:
           projectBaseDir: apps/auth
         env:
-          SONAR_TOKEN: '165f5e39fa0b5795325087273172e1858d3a1544'
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
