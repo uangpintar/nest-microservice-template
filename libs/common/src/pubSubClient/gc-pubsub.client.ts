@@ -5,39 +5,34 @@ import {
   Transport,
 } from '@algoan/pubsub';
 import { Logger } from '@nestjs/common';
-import { ClientProxy, ReadPacket } from '@nestjs/microservices';
+import {
+  ClientProxy,
+  ReadPacket,
+  WritePacket,
+  IncomingResponse,
+} from '@nestjs/microservices';
+// import { ERROR_EVENT, MESSAGE_EVENT } from '@nestjs/microservices/constants';
 
 export type GCPubSubClientOptions = GooglePubSubOptions & {
   messageMetadataKey?: string;
 };
-/**
- * Algoan pub sub client
- */
+
 export class GCPubSubClient extends ClientProxy {
-  /**
-   * Logger
-   */
   protected logger: Logger = new Logger(GCPubSubClient.name);
-  /**
-   * Algoan PubSub client
-   */
   protected pubSub?: GCPubSub;
 
-  /**
-   * Algoan PubSub client
-   */
   private readonly options?: GCPubSubClientOptions;
 
   constructor(options?: GCPubSubClientOptions) {
     super();
     this.options = options;
+    this.initializeSerializer(options);
+    this.initializeDeserializer(options);
   }
 
-  /**
-   * Connect
-   */
-  public async connect(): Promise<void> {
+  public async connect(): Promise<GCPubSub> {
     const isPubSubInstanceExisting: boolean = this.pubSub !== undefined;
+
     if (this.options?.debug === true) {
       this.logger.debug(
         {
@@ -55,11 +50,40 @@ export class GCPubSubClient extends ClientProxy {
       transport: Transport.GOOGLE_PUBSUB,
       options: this.options,
     });
+
+    // this.pubSub.client
+    //   .subscription('gateway-sub')
+    //   .on(MESSAGE_EVENT, async (message: Message) => {
+    //     await this.handleResponse(message.data);
+    //     message.ack();
+    //   })
+    //   .on(ERROR_EVENT, (err: any) => this.logger.error(err));
+    // return this.pubSub;
   }
 
-  /**
-   * Close the connection with the client
-   */
+  public async handleResponse(data: Buffer) {
+    const rawMessage = JSON.parse(data.toString());
+    const { err, response, isDisposed, id } = this.deserializer.deserialize(
+      rawMessage,
+    ) as IncomingResponse;
+    const callback = this.routingMap.get(id);
+    if (!callback) {
+      return;
+    }
+
+    if (err || isDisposed) {
+      return callback({
+        err,
+        response,
+        isDisposed,
+      });
+    }
+    callback({
+      err,
+      response,
+    });
+  }
+
   public async close(): Promise<void> {
     if (this.options?.debug === true) {
       this.logger.debug('Closing the GooglePubSubClient Proxy');
@@ -70,11 +94,6 @@ export class GCPubSubClient extends ClientProxy {
     }
   }
 
-  /**
-   * Override the abstract "dispatchEvent" by simply emitting an Event
-   * @param _packet Containing the event pattern and the payload sent
-   */
-  // tslint:disable-next-line: no-any
   public async dispatchEvent(_packet: ReadPacket): Promise<any> {
     if (this.pubSub === undefined) {
       return undefined;
@@ -105,11 +124,21 @@ export class GCPubSubClient extends ClientProxy {
     return this.pubSub.emit(pattern, _packet.data, opts);
   }
 
-  /**
-   * NOTE: this method has not been yet implemented
-   * It will be in the future 😉
-   */
-  public publish(): () => void {
-    throw new Error('NOT_YET_IMPLEMENTED');
+  public publish(
+    partialPacket: ReadPacket,
+    callback: (packet: WritePacket) => any,
+  ): () => void {
+    try {
+      const packet = this.assignPacketId(partialPacket);
+
+      const topic = this.normalizePattern(partialPacket.pattern);
+
+      const serializedPacket = this.serializer.serialize(packet);
+      this.routingMap.set(packet.id, callback);
+      this.pubSub.emit(topic, serializedPacket);
+      return () => this.routingMap.delete(packet.id);
+    } catch (err) {
+      callback({ err });
+    }
   }
 }

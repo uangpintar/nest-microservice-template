@@ -5,4 +5,4 @@ export * from './rmq/rmq.service';
 export * from './rmq/rmq.module';
 export * from './auth/jwt-auth.guard';
 export * from './auth/auth.module';
-export * from './pubSubClient/pubSubClient';
+export * from './pubSubClient/gc-pubsub.client';
