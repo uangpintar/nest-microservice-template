@@ -1,8 +1,12 @@
+
+
 FROM node:alpine as development
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY /apps/auth/package*.json ./
+
+RUN npm config set legacy-peer-deps true
 
 RUN npm install
 
@@ -17,7 +21,9 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY /apps/auth/package*.json ./
+
+RUN npm config set legacy-peer-deps true
 
 RUN npm install --only=production
 

@@ -2,12 +2,10 @@
   "name": "ordering-app",
   "version": "0.0.1",
   "description": "",
-  "workspaces": {
-    "packages": [
-      "./apps/*",
-      "./libs/*"
-    ]
-  },
+  "workspaces": [
+    "./apps/*",
+    "./libs/*"
+  ],
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -34,6 +32,7 @@
     "@golevelup/ts-jest": "^0.3.3",
     "@google-cloud/pubsub": "^3.0.1",
     "@nest/microservices": "^4.5.4",
+    "@nestjs/cli": "^8.0.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.0.0",
@@ -60,11 +59,9 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.4.0",
-    "@nestjs/cli": "^8.0.0"
+    "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
-    "husky": "^8.0.1",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@nestjs/schematics": "^8.0.0",
@@ -81,6 +78,7 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
     "jest": "28.0.3",
     "prettier": "^2.3.2",
     "semantic-release": "^19.0.3",
