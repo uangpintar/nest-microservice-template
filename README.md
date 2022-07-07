@@ -1,83 +1,63 @@
-# Nestjs Microservices Boilerplate
-
-Check 
- - [monorepo docs](https://docs.nestjs.com/cli/monorepo)
-
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
 | ![Statements](https://img.shields.io/badge/Coverage-92.24%25-brightgreen.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-65.32%25-red.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-86.9%25-yellow.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-91.61%25-brightgreen.svg "Make me better!") |
 
+# NestJS Microservices
 
-##### Monorepo with nestjs
+[NestJS Monorepo Docs](https://docs.nestjs.com/cli/monorepo)
+
+## Monorepo with nestjs
   - Docker
-
   - Logs Service
     - Pinojs
-
   - Observability APM Monitoring and logs management
     - datadog
-
   - Authentication
-
   - Swagger Documentation
-
   - Monggodb
     - mongoose
     - multiples databases
-
   - Messages broker
     - Kafka
     - RabbitMQ
     - Google PubSub
-
   - libs structure
-
   - Tests
     - Unit tests
     - e2e 
     - 90% Coverage
-
   - CI/CD
     - Github Actions
-
   - Code Quality checker
     - Sonar cloud  
-
   - Commitlint
     - Husky
     - Conventional commit pattern
-
   - linter
     - eslint
-
   - Versioning
     - Semantic release
 
-
-#### Prerequisite
+## Prerequisite
  - Node: 14 => <= 18
  - Docker
  - npm install -g commitizen
 
-### Installation
-
+## Installation
 - install monorepo depedencies on the root directory 
   ```bash
   $ npm install
   ```
-
 - install project depedencies
   ```bash
   $ npm install on your service/project folder
   ```
-
 - install lib on project 
   ```bash
   $ npm install
   ```
-
-### Running the app
-
+  
+## Running the app
 Run the docker compose to run all the services
 ```bash
   docker-compose up --build -V 
@@ -87,20 +67,18 @@ You can run spesific service by running the dockerfile on the project folder
   docker run -d <Dockerfile>
 ```
 
-#### workspaces list
+## Workspaces list
 - billing
 - auth
 - orders
 - libs
 
-
-#### Tests
+## Tests
  - unit
   ```bash
     # run monorepo test
     npm run test
   ```
-
   ```bash
   # Run project test on your project folder
   $ npm run test
@@ -109,24 +87,18 @@ You can run spesific service by running the dockerfile on the project folder
   ```
     $ npm run test:cov
   ```
-
 - e2e
   ```
     $ npm run test:e2e
   ```
 
----
-
-### Lint
-
+## Lint
  - Run lint 
     ```bash
     $ npm run lint
     ```
----
 
--- App Skeleton 
-
+## App Skeleton \
 ```
 .
 |-- apps
@@ -266,17 +238,6 @@ You can run spesific service by running the dockerfile on the project folder
 `-- tsconfig.json
 ```
 
----
- #### Architecture
- - ```├── libs```: Application shared libs.
- - ```├── apps```: Monorepo Applications.
----
-
-## License
-
-It is available under the MIT license.
-[License](https://opensource.org/licenses/mit-license.php)
-
-
-
-
+## Architecture
+- ```├── libs```: Application shared libs.
+- ```├── apps```: Monorepo Applications.
