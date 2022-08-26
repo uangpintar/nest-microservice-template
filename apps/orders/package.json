@@ -35,7 +35,7 @@
     "cookie-parser": "^1.4.6",
     "dd-trace": "^2.9.1",
     "joi": "^17.6.0",
-    "mongoose": "^6.2.2",
+    "mongoose": "^6.4.6",
     "nestjs-ddtrace": "^1.0.3",
     "nestjs-pino": "^2.6.0",
     "passport-local": "^1.0.0",
